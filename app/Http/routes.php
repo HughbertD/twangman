@@ -12,5 +12,9 @@
 */
 
 $app->get('/', function() use ($app) {
-    return $app->welcome();
+    return view('home');
 });
+
+$app->get('/new', [
+    'uses' => 'App\Http\Controllers\GameController@start'
+]);
