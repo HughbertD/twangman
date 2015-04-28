@@ -1,8 +1,10 @@
 <?php
 
 require_once __DIR__.'/../vendor/autoload.php';
+use \Abraham\TwitterOAuth\TwitterOAuth;
 
-// Dotenv::load(__DIR__.'/../');
+
+ Dotenv::load(__DIR__.'/../');
 
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +46,16 @@ $app->singleton(
     'App\Console\Kernel'
 );
 
+$app->bind('App\Twangman\Game', function($app) {
+    $oAuth = new Abraham\TwitterOAuth\TwitterOAuth(
+        getenv('TWITTER_OAUTH_CONSUMER_KEY'),
+        getenv('TWITTER_OAUTH_CONSUMER_SECRET'),
+        getenv('TWITTER_OAUTH_ACCESS_TOKEN'),
+        getenv('TWITTER_OAUTH_ACCESS_TOKEN_SECRET')
+    );
+    return new App\Twangman\Game($oAuth);
+});
+
 /*
 |--------------------------------------------------------------------------
 | Register Middleware
@@ -55,13 +67,13 @@ $app->singleton(
 |
 */
 
-// $app->middleware([
-//     // 'Illuminate\Cookie\Middleware\EncryptCookies',
-//     // 'Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse',
-//     // 'Illuminate\Session\Middleware\StartSession',
-//     // 'Illuminate\View\Middleware\ShareErrorsFromSession',
-//     // 'Laravel\Lumen\Http\Middleware\VerifyCsrfToken',
-// ]);
+ $app->middleware([
+     // 'Illuminate\Cookie\Middleware\EncryptCookies',
+     // 'Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse',
+      'Illuminate\Session\Middleware\StartSession',
+     // 'Illuminate\View\Middleware\ShareErrorsFromSession',
+     // 'Laravel\Lumen\Http\Middleware\VerifyCsrfToken',
+ ]);
 
 // $app->routeMiddleware([
 
