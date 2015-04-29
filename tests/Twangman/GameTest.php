@@ -45,4 +45,15 @@ class GameTest extends TestCase
         $this->assertEquals($game->numberTiles, strlen($twitterTopic));
     }
 
+    public function testNumberOfTiles()
+    {
+        $twitterTopic = 'Three Words Topic';
+        $twitterOAuth = $this->createTwitterMock($twitterTopic);
+
+        $game = new Game($twitterOAuth);
+        $game->start();
+
+        $this->assertEquals($game->numberTiles, 15);
+    }
+
 }

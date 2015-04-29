@@ -68,7 +68,7 @@ class Game
 
         $this->word = $gameWord;
 
-        $this->numberTiles = strlen($gameWord);
+        $this->numberTiles = $this->setNumberTiles($gameWord);
 
         //Store the game data to the session
         session(['game' => $this]);
@@ -83,6 +83,18 @@ class Game
         shuffle($availableTrends);
         return current($availableTrends)->name;
     }
+
+    /**
+     * Set the number of tiles needed to render on screen
+     * @param $gameWord
+     * @return int
+     */
+    private function setNumberTiles($gameWord)
+    {
+        $gameWord = preg_replace("/[^A-Za-z0-9]/", '', $gameWord);
+        return strlen($gameWord);
+    }
+
 
 
 }
