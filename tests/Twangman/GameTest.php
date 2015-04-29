@@ -16,13 +16,8 @@ class GameTest extends TestCase
         return require __DIR__ . '/../../bootstrap/app.php';
     }
 
-    /**
-     * Test the game start up method
-     */
-    public function testGameStart()
+    public function createTwitterMock($twitterTopic)
     {
-
-        $twitterTopic = 'TestTwitterTopic';
         $trends = [
             (object) ['trends' => [
                 (object) ['name' => $twitterTopic]
@@ -32,6 +27,17 @@ class GameTest extends TestCase
             ->disableOriginalConstructor()
             ->getMock();
         $twitterOAuth->method('get')->willReturn($trends);
+        return $twitterOAuth;
+    }
+
+    /**
+     * Test the game start up method
+     */
+    public function testGameStart()
+    {
+        $twitterTopic = 'TestTwitterTopic';
+        $twitterOAuth = $this->createTwitterMock($twitterTopic);
+
         $game = new Game($twitterOAuth);
         $game->start();
 
