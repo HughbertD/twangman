@@ -18,3 +18,7 @@ $app->get('/', function() use ($app) {
 $app->get('/new', [
     'uses' => 'App\Http\Controllers\GameController@start'
 ]);
+
+$app->post('/guess/{letter}', [
+   'uses' => 'App\Http\Controllers\GameController@guess'
+]);
