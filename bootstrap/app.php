@@ -1,10 +1,12 @@
 <?php
 
 require_once __DIR__.'/../vendor/autoload.php';
-use \Abraham\TwitterOAuth\TwitterOAuth;
 
-
- Dotenv::load(__DIR__.'/../');
+try{
+    Dotenv::load(__DIR__.'/../');
+} catch(Exception $e) {
+    //No .env file
+}
 
 /*
 |--------------------------------------------------------------------------
