@@ -6,7 +6,9 @@ Silly side project for playing around with Laravel/Lumen
 
 ### Installation
 
+- Built locally using [Homestead](http://laravel.com/docs/5.0/homestead)
+- Clone repository to new project site
 - Create a .env file in root
-- Add Twitter OAuth tokens
+- Add Twitter OAuth tokens [here to register](https://apps.twitter.com/app/new)
 
 
